@@ -24,7 +24,7 @@ df = df.sort_values(['Ticker', 'Date'])
 df = df.reset_index(drop = True)
 
 # Feature 1 - Daily Return
-df['Daily_Return'] = (df['Close'] - df['Open'] / df['Open'])
+df['Daily_Return'] = (df['Close'] - df['Open']) / df['Open']
 
 # Feature 2- 7- Day Moving Average
 df['MA_7'] = df.groupby('Ticker')['Close'].transform(
@@ -58,8 +58,8 @@ print(f"\n Rows after dropping NAN : {len(df)}")
 
 # Save Cleaned Data
 
-os.makedirs('data/processed', exist_ok = True)
-df.to_csv('C:\\DMW PROJECT\\data\\raw\\all_stocks_raw.csv', index = False)
+os.makedirs('C:\\DMW PROJECT\\data\\processed', exist_ok = True)
+df.to_csv('C:\\DMW PROJECT\\data\\processed\\all_stocks_processed.csv', index=False)
 print("\n PreProcessing Complete, Final Shape:" ,df.shape)
 print("\n Sample of Processed Data")
 print(df.head(10))
